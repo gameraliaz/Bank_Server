@@ -2,6 +2,8 @@
 #define SERVER_H
 
 #include <QMainWindow>
+#include <QtNetwork/QTcpServer>
+#include <QtNetwork/QTcpSocket>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Server; }
@@ -14,7 +16,6 @@ class Server : public QMainWindow
 public:
     Server(QWidget *parent = nullptr);
     ~Server();
-
 private:
     Ui::Server *ui;
 };

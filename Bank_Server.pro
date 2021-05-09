@@ -1,5 +1,5 @@
 QT       += core gui
-
+QT += network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -16,10 +16,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Class/customers.cpp \
+    Class/employees.cpp \
+    Class/procces.cpp \
+    Class/timer.cpp \
     main.cpp \
     server.cpp
 
 HEADERS += \
+    Class/customers.h \
+    Class/employees.h \
+    Class/procces.h \
+    Class/timer.h \
     server.h
 
 FORMS += \
