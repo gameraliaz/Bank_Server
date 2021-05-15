@@ -1,17 +1,16 @@
 #ifndef PROCCES_H
 #define PROCCES_H
-#include <QtCore>
-#include "Class/customers.h"
-#include "Class/employees.h"
+#include <QString>
 #include "Class/timer.h"
-
-class Procces : public Customers , public Employees
+#include "Class/customer.h"
+class procces:public timer
 {
-public:
-    Procces(int employeeId,int service);
-    QString timeStatus();
-private:
-     timer *timerOb;
+    private:
+        person Employee;
+        customer Customer;
+    public:
+        void setCusEmp(customer Customer ,person Employee);
+        QString Status();
 };
 
 #endif // PROCCES_H

@@ -1,19 +1,18 @@
 #ifndef TIMER_H
 #define TIMER_H
-
-#include <QTimer>
-class timer: public QObject
+#include <iostream>
+#include <QString>
+#include <ctime>
+class timer
 {
-     Q_OBJECT
-public:
-    timer();
-    QTimer *ttimer;
-    int timerres;
-    int time_min();
-    ~timer();
-public slots:
-    void MyTimerSlot();
-
+    private:
+        time_t timerob;
+    public:
+        timer();
+        void end();
+        int time_min();
+        int time_sec();
+        QString Status();
 };
 
 #endif // TIMER_H

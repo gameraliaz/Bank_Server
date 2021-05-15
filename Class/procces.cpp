@@ -1,12 +1,13 @@
 
 #include "procces.h"
-
-Procces::Procces(int employeeId,int service):Customers(service),Employees(employeeId)
+#include "Class/timer.h"
+void procces::setCusEmp(customer Customer ,person Employee)
 {
-    timerOb=new timer;
+    procces::Customer=Customer;
+    procces::Employee=Employee;
 }
-
-QString Procces::timeStatus()
+QString procces::Status()
 {
-    return "Procces Time : "+(QString)((timerOb->timerres>60)?timerOb->time_min():timerOb->timerres);
+    QString result="";
+    result="Procces time : ";
 }

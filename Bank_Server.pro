@@ -16,16 +16,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Class/customers.cpp \
-    Class/employees.cpp \
+    Class/banksys.cpp \
+    Class/customer.cpp \
+    Class/employee.cpp \
+    Class/person.cpp \
     Class/procces.cpp \
     Class/timer.cpp \
     main.cpp \
     server.cpp
 
 HEADERS += \
-    Class/customers.h \
-    Class/employees.h \
+    Class/banksys.h \
+    Class/customer.h \
+    Class/employee.h \
+    Class/person.h \
     Class/procces.h \
     Class/timer.h \
     server.h

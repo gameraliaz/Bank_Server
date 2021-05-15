@@ -2,27 +2,21 @@
 
 timer::timer()
 {
-    timerres=0;
-    // create a timer
-    ttimer = new QTimer(this);
-
-    // setup signal and slot
-    connect(ttimer, SIGNAL(timeout()),
-          this, SLOT(MyTimerSlot()));
-
-    // msec
-    ttimer->start(1000);
+    timerob=time(NULL);
 }
-
-timer::~timer()
+void timer::end()
 {
-    killTimer(ttimer->timerId());
+    timerob=time(NULL)-timerob;
 }
-void timer::MyTimerSlot()
+int timer::time_min()
 {
-    timerres++;
+    return timerob/60;
 }
-int timer::time_min()//time to min (int)
+int timer::time_sec()
 {
-    return timerres/60;
+    return timerob;
+}
+QString timer::Status()
+{
+    return (QString)((timerob<60)?time_sec():time_min());
 }
