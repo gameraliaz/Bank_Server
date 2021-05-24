@@ -1,14 +1,16 @@
 #include "banksys.h"
-
+#include <QDebug>
+int* banksys::Turn=new int[0];
 banksys::banksys()
 {
-    Turn=new int[0];
     Services=new QString[0];
     Sercount=0;
     Employees=new employee[0];
     Empcount=0;
     Customers=new customer[0];
     Cuscount=0;
+    Procces=new procces[0];
+    Procount=0;
 }
 void banksys::addEmployee(QString Password,QString Firstname,QString Lastname,QString Birthdate,QString Identitycode)
 {
@@ -100,26 +102,76 @@ void banksys::addService(QString Service)
         Turn[i]=tempt[i];
     }
     //Initialization new index of Turn
-    Turn[Sercount-1]=0;
+    Turn[Sercount-1]=1;
 }
 QString banksys::Status()
 {
     QString result="";
-    result+="Employees count : "+((QString)Empcount) +'\t'+"Ids: "+((QString)employee::Ids)+'\n';
+    result+="Employees count : "+(QVariant(Empcount).toString()) +'\t'+"Ids: "+(QVariant(employee::Ids).toString())+'\n';
     for(int i=0;i<Empcount;i++)
     {
         result+=Employees[i].Status();
     }
-    result+="Customers count : "+((QString)Cuscount)+'\n';
+    result+="Customers count : "+(QVariant(Cuscount).toString())+'\n';
     for(int i=0;i<Cuscount;i++)
     {
         result+=Customers[i].Status();
     }
-    result+="Services count : "+((QString)Sercount)+'\n';
+    result+="Services count : "+(QVariant(Sercount).toString())+'\n';
     for(int i=0;i<Sercount;i++)
     {
-        result+=((QString)i)+" : "+Services[i]+'\t';
-        result+="Queue : "+((QString)customer::Queue[i])+'\n';
+        result+=(QVariant(i).toString())+" : "+Services[i]+'\t';
+        result+="Queue : "+(QVariant(customer::Queue[i]).toString())+'\n';
     }
+    result+="Procces count : "+(QVariant(Procount).toString())+'\n';
+    for(int i=0;i<Procount;i++)
+    {
+        result+=Procces[i].Status();
+    }
+
     return result;
+}
+bool banksys::Empgetjob(employee Employee,int Service)
+{
+    customer Customer;
+    qDebug() << Turn[Service];
+    if(!Customer.SignIn(Turn[Service],Service,Customers))
+        return false;
+    //add Procces size
+    qDebug() << "a";
+    procces temp[Procount];
+    for(int i=0;i<Procount;i++)
+    {
+        temp[i]=Procces[i];
+    }
+    qDebug() << "b";
+    delete [] Procces;
+    Procount++;
+    qDebug() << "c";
+    Procces=new procces[Procount];
+    for(int i=0;i<Procount-1;i++)
+    {
+        Procces[i]=temp[i];
+    }
+    qDebug() << "d";
+    //Initialization new index of Procces
+    Procces[Procount-1].setCusEmp(Customer,Employee);
+    qDebug() << "e";
+    Turn[Service]++;
+    qDebug() << "f";
+    procces::idProcces++;
+    qDebug() << "j";
+    return true;
+}
+bool banksys::Empendjob(employee Emp)
+{
+    for(int i=0;i<Procount;i++)
+    {
+        if(Procces[i].checkEmployee(Emp))
+        {
+            Procces[i].endProcces();
+            return true;
+        }
+    }
+    return false;
 }

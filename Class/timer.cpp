@@ -18,5 +18,5 @@ int timer::time_sec()
 }
 QString timer::Status()
 {
-    return (QString)((timerob<60)?time_sec():time_min());
+    return QVariant(((timerob<60)?time_sec():time_min())).toString();
 }

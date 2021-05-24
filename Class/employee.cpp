@@ -40,6 +40,12 @@ bool employee::trueInfo(int Id,QString Password)
         return true;
     return false;
 }
+bool employee::trueInfo(int Id)
+{
+    if(Id==id)
+        return true;
+    return false;
+}
 void employee::returnInfo(int &Id,QString &Password,QString &Firstname,QString &Lastname,QString &Birthdate,QString &Identitycode)
 {
     Id=id;
@@ -48,6 +54,10 @@ void employee::returnInfo(int &Id,QString &Password,QString &Firstname,QString &
     Lastname=lastName;
     Birthdate=birthDate;
     Identitycode=identityCode;
+}
+void employee::returnInfo(int &Id)
+{
+    Id=id;
 }
 employee& employee::operator = (employee ob)
 {
@@ -62,14 +72,6 @@ employee& employee::operator = (employee ob)
 QString employee::Status()
 {
     QString result="";
-    result="ID : "+(QString)(id)+'\t'+person::Status()+'\n';
+    result="ID : "+QVariant(id).toString()+'\t'+person::Status()+'\n';
     return result;
-}
-void employee::getJob(int Service)
-{
-    Pro=new procces;
-}
-void employee::endJob()
-{
-
 }

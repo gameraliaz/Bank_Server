@@ -22,15 +22,17 @@ bool customer::trueInfo(int Place,int Service)
         return true;
     return false;
 }
-void customer::SignIn(int Place,int Service,customer *Customers)
+bool customer::SignIn(int Place,int Service,customer *Customers)
 {
     for(int i=0;i<allQueue;i++)
     {
         if(Customers[i].trueInfo(Place,Service))
         {
             Customers[i].returnInfo(service,place,firstName,lastName,birthDate,identityCode);
+            return  true;
         }
     }
+    return  false;
 }
 customer& customer::operator = (customer ob)
 {
@@ -47,7 +49,7 @@ QString customer::Status()
 {
     QString result="";
     result+=person::Status();
-    result="Service : "+((QString)service)+"\tPlace : "+((QString)place)+'\n';
+    result="Service : "+(QVariant(service).toString())+"\tPlace : "+(QVariant(place).toString())+'\n';
     return result;
 
 }

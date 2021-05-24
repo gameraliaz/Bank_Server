@@ -3,11 +3,12 @@
 #include <iostream>
 #include <QString>
 #include <ctime>
+#include <QVariant>
 class timer
 {
     private:
         time_t timerob;
-    public:
+    protected:
         timer();
         void end();
         int time_min();

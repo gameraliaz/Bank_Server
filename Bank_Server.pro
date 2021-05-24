@@ -22,6 +22,8 @@ SOURCES += \
     Class/person.cpp \
     Class/procces.cpp \
     Class/timer.cpp \
+    Form/employeewin.cpp \
+    Form/winloginemployee.cpp \
     main.cpp \
     server.cpp
 
@@ -32,9 +34,13 @@ HEADERS += \
     Class/person.h \
     Class/procces.h \
     Class/timer.h \
+    Form/employeewin.h \
+    Form/winloginemployee.h \
     server.h
 
 FORMS += \
+    Form/employeewin.ui \
+    Form/winloginemployee.ui \
     server.ui
 
 # Default rules for deployment.

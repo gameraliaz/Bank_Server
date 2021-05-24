@@ -1,7 +1,7 @@
 #ifndef PERSON_H
 #define PERSON_H
 #include <QString>
-
+#include <QVariant>
 class person
 {
     protected:
