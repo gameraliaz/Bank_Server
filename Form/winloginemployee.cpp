@@ -6,10 +6,14 @@ winLoginEmployee::winLoginEmployee(QWidget *parent) :
     ui(new Ui::winLoginEmployee)
 {
     ui->setupUi(this);
-    ui->txtID->
 }
 
 winLoginEmployee::~winLoginEmployee()
 {
     delete ui;
+}
+
+void winLoginEmployee::on_btnLogin_clicked()
+{
+
 }

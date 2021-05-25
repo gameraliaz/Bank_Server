@@ -23,6 +23,7 @@ SOURCES += \
     Class/procces.cpp \
     Class/timer.cpp \
     Form/employeewin.cpp \
+    Form/winadmin.cpp \
     Form/winloginemployee.cpp \
     main.cpp \
     server.cpp
@@ -35,11 +36,13 @@ HEADERS += \
     Class/procces.h \
     Class/timer.h \
     Form/employeewin.h \
+    Form/winadmin.h \
     Form/winloginemployee.h \
     server.h
 
 FORMS += \
     Form/employeewin.ui \
+    Form/winadmin.ui \
     Form/winloginemployee.ui \
     server.ui
 

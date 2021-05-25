@@ -2,6 +2,9 @@
 #define WINLOGINEMPLOYEE_H
 
 #include <QMainWindow>
+#include <Class/banksys.h>
+#include <Form/employeewin.h>
+#include <QVariant>
 
 namespace Ui {
 class winLoginEmployee;
@@ -14,6 +17,9 @@ class winLoginEmployee : public QMainWindow
 public:
     explicit winLoginEmployee(QWidget *parent = nullptr);
     ~winLoginEmployee();
+
+private slots:
+    void on_btnLogin_clicked();
 
 private:
     Ui::winLoginEmployee *ui;

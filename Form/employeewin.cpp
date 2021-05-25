@@ -6,6 +6,7 @@ employeeWin::employeeWin(QWidget *parent) :
     ui(new Ui::employeeWin)
 {
     ui->setupUi(this);
+    active=false;
 }
 
 employeeWin::~employeeWin()

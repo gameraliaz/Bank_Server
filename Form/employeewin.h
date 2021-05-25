@@ -2,7 +2,8 @@
 #define EMPLOYEEWIN_H
 
 #include <QMainWindow>
-
+#include <QVariant>
+#include <Class/banksys.h>
 namespace Ui {
 class employeeWin;
 }
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::employeeWin *ui;
+    bool active;
 };
 
 #endif // EMPLOYEEWIN_H

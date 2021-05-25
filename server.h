@@ -18,20 +18,15 @@ public:
     Server(QWidget *parent = nullptr);
     ~Server();
 private slots:
-    void on_Empcreate_clicked();
 
-    void on_Cuscreate_clicked();
+    void on_btnAdmin_clicked();
 
-    void on_Sercreate_clicked();
+    void on_btnEmployee_clicked();
 
-    void on_Getjob_clicked();
-
-    void on_Endjob_clicked();
-
-    void on_Status_clicked();
+    void on_btnCustomer_clicked();
 
 private:
-    banksys Bank;
+    static banksys Bank;
     Ui::Server *ui;
 };
 #endif // SERVER_H
