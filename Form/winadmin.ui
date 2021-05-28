@@ -7,53 +7,53 @@
     <x>0</x>
     <y>0</y>
     <width>830</width>
-    <height>452</height>
+    <height>710</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnShowBankInfo">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>260</y>
-      <width>191</width>
+      <x>10</x>
+      <y>330</y>
+      <width>811</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Show bank information</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btnAddService">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>260</y>
-      <width>181</width>
-      <height>61</height>
+      <x>430</x>
+      <y>240</y>
+      <width>381</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Add Service</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnCreateEmployee">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>150</y>
-      <width>181</width>
-      <height>61</height>
+      <x>390</x>
+      <y>140</y>
+      <width>421</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Create Employee</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="txtID">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -66,7 +66,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="txtFirstName">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -130,7 +130,7 @@
      <string>Last Name :</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="txtLastName">
     <property name="geometry">
      <rect>
       <x>590</x>
@@ -144,7 +144,7 @@
     <property name="geometry">
      <rect>
       <x>250</x>
-      <y>100</y>
+      <y>90</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -158,11 +158,11 @@
      <string>Password :</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
+   <widget class="QLineEdit" name="txtPassword">
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>100</y>
+      <y>90</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -171,11 +171,11 @@
      <enum>QLineEdit::Password</enum>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_5">
+   <widget class="QLineEdit" name="txtRepPassword">
     <property name="geometry">
      <rect>
       <x>680</x>
-      <y>100</y>
+      <y>90</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -188,7 +188,7 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>100</y>
+      <y>90</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -202,11 +202,11 @@
      <string>Repeat password :</string>
     </property>
    </widget>
-   <widget class="QDateEdit" name="dateEdit">
+   <widget class="QDateEdit" name="dpBirthDate">
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>100</y>
+      <y>90</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -216,7 +216,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>100</y>
+      <y>90</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -230,6 +230,150 @@
      <string>Birth Date :</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Add service :</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Service Name :</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtServiceName">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>270</y>
+      <width>241</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Add employee :</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtIdentity">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>140</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Identity code:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>80</y>
+      <width>831</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../Resource.qrc">:/Images/Images/splitter01.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="txtInfo">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>400</y>
+      <width>811</width>
+      <height>261</height>
+     </rect>
+    </property>
+   </widget>
+   <zorder>label_11</zorder>
+   <zorder>btnShowBankInfo</zorder>
+   <zorder>btnAddService</zorder>
+   <zorder>btnCreateEmployee</zorder>
+   <zorder>txtID</zorder>
+   <zorder>txtFirstName</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>txtLastName</zorder>
+   <zorder>label_4</zorder>
+   <zorder>txtPassword</zorder>
+   <zorder>txtRepPassword</zorder>
+   <zorder>label_5</zorder>
+   <zorder>dpBirthDate</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
+   <zorder>label_8</zorder>
+   <zorder>txtServiceName</zorder>
+   <zorder>label_9</zorder>
+   <zorder>txtIdentity</zorder>
+   <zorder>label_10</zorder>
+   <zorder>txtInfo</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -243,6 +387,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -17,9 +17,11 @@ class banksys
         int Cuscount;
         procces *Procces;
         int Procount;
-        QString *Services;
-        int Sercount;
+        int *ProcountSer;
         static int *Turn;
+        int *customersCanceledCount;
+        int max_min_sum_avg[4];
+        int **max_min_sum_avg_ser;
     public:
         banksys();
         void addEmployee(QString Password,QString Firstname,QString Lastname,QString Birthdate,QString Identitycode);
@@ -30,6 +32,10 @@ class banksys
         QString Status();
         bool Empgetjob(employee Employee,int Service);
         bool Empendjob(employee Employee);
+        QString Turn_Queue (int queueNum);
+        QString *Services;
+        int Sercount;
+        void customerServiceCancel(int service);
 };
 
 #endif // BANKSYS_H

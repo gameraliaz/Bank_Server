@@ -1,7 +1,6 @@
 #include "procces.h"
 #include "Class/timer.h"
 
-int procces::idProcces=1000000;
 void procces::setCusEmp(customer Customer ,employee Employee)
 {
     procces::Customer=Customer;
@@ -15,8 +14,8 @@ bool procces::checkEmployee(employee emp)
 }
 void procces::endProcces()
 {
-
     end();
+    proccesTime=time_sec();
 }
 QString procces::Status()
 {

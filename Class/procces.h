@@ -11,11 +11,12 @@ class procces:public timer
         employee Employee;
         customer Customer;
     public:
-        static int idProcces;
         void setCusEmp(customer Customer ,employee Employee);
         void endProcces();
         QString Status();
         bool checkEmployee(employee emp);
+        int proccesTime;
+
 };
 
 #endif // PROCCES_H

@@ -15,10 +15,21 @@ class employeeWin : public QMainWindow
 public:
     explicit employeeWin(QWidget *parent = nullptr);
     ~employeeWin();
+    void setEmployee(employee Employee);
+
+private slots:
+    void on_cmbService_currentIndexChanged(int index);
+
+    void on_btnGetjob_clicked();
+
+    void on_btnEndjob_clicked();
 
 private:
     Ui::employeeWin *ui;
     bool active;
+    int service;
+    employee Employee;
+    int timecare;
 };
 
 #endif // EMPLOYEEWIN_H

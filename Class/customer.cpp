@@ -51,6 +51,10 @@ QString customer::Status()
     result+=person::Status();
     result="Service : "+(QVariant(service).toString())+"\tPlace : "+(QVariant(place).toString())+'\n';
     return result;
-
+}
+void customer::end()
+{
+    timer::end();
+    waittime=time_sec();
 }
 

@@ -1,8 +1,10 @@
 #include "employee.h"
-
+#include <ctime>
 int employee::Ids =1000;
 employee::employee()
 {
+    worktime=0;
+    Workcount=0;
     id=-1;
     active=false;
 }
@@ -59,6 +61,10 @@ void employee::returnInfo(int &Id)
 {
     Id=id;
 }
+QString employee::Name()
+{
+    return firstName+" "+lastName;
+}
 employee& employee::operator = (employee ob)
 {
     id=ob.id;
@@ -72,6 +78,21 @@ employee& employee::operator = (employee ob)
 QString employee::Status()
 {
     QString result="";
-    result="ID : "+QVariant(id).toString()+'\t'+person::Status()+'\n';
+    result="ID : "+QVariant(id).toString()+"\t Work time: "+QVariant(worktime).toString()+"\t Work count: "+QVariant(Workcount).toString()+'\n'+person::Status()+'\n';
     return result;
+}
+void employee::stop_start_working()
+{
+    if(active)
+    {
+        //stop
+        worktime+=time(NULL)-timecare;
+        active=false;
+    }
+    else
+    {
+        //start
+        timecare=time(NULL);
+        active=true;
+    }
 }

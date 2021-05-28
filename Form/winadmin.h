@@ -2,7 +2,8 @@
 #define WINADMIN_H
 
 #include <QMainWindow>
-
+#include <server.h>
+#include <QVariant>
 namespace Ui {
 class winAdmin;
 }
@@ -14,6 +15,13 @@ class winAdmin : public QMainWindow
 public:
     explicit winAdmin(QWidget *parent = nullptr);
     ~winAdmin();
+
+private slots:
+    void on_btnCreateEmployee_clicked();
+
+    void on_btnAddService_clicked();
+
+    void on_btnShowBankInfo_clicked();
 
 private:
     Ui::winAdmin *ui;

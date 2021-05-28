@@ -1,5 +1,7 @@
 QT       += core gui
 QT += network
+QT += sql
+QT += widgets
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -25,6 +27,7 @@ SOURCES += \
     Form/employeewin.cpp \
     Form/winadmin.cpp \
     Form/winloginemployee.cpp \
+    db/dbmanager.cpp \
     main.cpp \
     server.cpp
 
@@ -38,6 +41,7 @@ HEADERS += \
     Form/employeewin.h \
     Form/winadmin.h \
     Form/winloginemployee.h \
+    db/dbmanager.h \
     server.h
 
 FORMS += \
@@ -50,3 +54,9 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    db/EmployeesDb.db
+
+RESOURCES += \
+    Resource.qrc

@@ -8,12 +8,11 @@
 
 
 
-class customer:public person
+class customer:public person,timer
 {
     private:
         int service;
         int place;
-
     public:
         static int allQueue;
         static int *Queue;
@@ -24,6 +23,8 @@ class customer:public person
         customer& operator = (customer ob);
         void verifiedIdentity(QString Firstname,QString Lastname,QString Birthdate,QString Identitycode);
         QString Status();
+        void end();
+        int waittime;
 };
 
 #endif // CUSTOMERS_H
