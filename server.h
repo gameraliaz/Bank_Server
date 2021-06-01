@@ -1,12 +1,13 @@
 #ifndef SERVER_H
 #define SERVER_H
 
+#include <QApplication>
 #include <QMainWindow>
-#include <QtNetwork/QTcpServer>
-#include <QtNetwork/QTcpSocket>
 #include <QVariant>
 #include <Class/banksys.h>
-#include <db/dbmanager.h>
+#include <Form/winloginemployee.h>
+#include <Form/winadmin.h>
+#include <Form/customerwin.h>
 QT_BEGIN_NAMESPACE
 namespace Ui { class Server; }
 QT_END_NAMESPACE
@@ -19,7 +20,6 @@ public:
     Server(QWidget *parent = nullptr);
     ~Server();
     static banksys Bank;
-    static DbManager DbEmployee;
 private slots:
 
     void on_btnAdmin_clicked();
@@ -30,5 +30,8 @@ private slots:
 
 private:
     Ui::Server *ui;
+    winAdmin *Winadmin;
+    winLoginEmployee *Winlogin;
+    CustomerWin *WinCustomer;
 };
 #endif // SERVER_H

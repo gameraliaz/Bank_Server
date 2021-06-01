@@ -22,6 +22,7 @@ private slots:
     void on_btnLogin_clicked();
 
 private:
+    employeeWin *Winemp;
     Ui::winLoginEmployee *ui;
 };
 

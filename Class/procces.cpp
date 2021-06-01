@@ -21,4 +21,9 @@ QString procces::Status()
 {
     QString result="";
     result="Procces time : "+timer::Status();
+    return  result;
+}
+bool procces::checkCustomer(customer cus)
+{
+    return cus.trueInfo(Customer.returnPlace(),Customer.returnService());
 }

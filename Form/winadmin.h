@@ -2,7 +2,6 @@
 #define WINADMIN_H
 
 #include <QMainWindow>
-#include <server.h>
 #include <QVariant>
 namespace Ui {
 class winAdmin;

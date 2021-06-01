@@ -9,17 +9,10 @@ DbManager::DbManager(const QString &path)
 {
     m_db = QSqlDatabase::addDatabase("QSQLITE");
     m_db.setDatabaseName(path);
-
     if (!m_db.open())
     {
         QMessageBox msgBox;
         msgBox.setText("Error: connection with database fail.");
-        msgBox.exec();
-    }
-    else
-    {
-        QMessageBox msgBox;
-        msgBox.setText("Database: connection ok.");
         msgBox.exec();
     }
 }
@@ -42,7 +35,7 @@ bool DbManager::createTable()
     bool success = true;
 
     QSqlQuery query;
-    query.prepare("CREATE TABLE employee(id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT, birthdate TEXT, identity TEXT,password TEXT);");
+    query.prepare("CREATE TABLE employee(id INTEGER PEIMARY KEY, firstname TEXT, lastname TEXT, birthdate TEXT, identity TEXT,password TEXT);");
 
     if (!query.exec())
     {
@@ -82,7 +75,7 @@ bool DbManager::addEmployee(int id,QString password,QString firstname,QString la
 {
     bool success = false;
     QSqlQuery queryAdd;
-    queryAdd.prepare("INSERT INTO employee (id,firstname,lastname,birthdate,identity ,password) VALUES (:firstname,:lastname,:birthdate,:identity , :password)");
+    queryAdd.prepare("INSERT INTO employee (id,firstname,lastname,birthdate,identity ,password) VALUES (:id,:firstname,:lastname,:birthdate,:identity , :password)");
     queryAdd.bindValue(":id", id);
     queryAdd.bindValue(":firstname", firstname);
     queryAdd.bindValue(":lastname", lastname);

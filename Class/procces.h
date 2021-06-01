@@ -11,6 +11,7 @@ class procces:public timer
         employee Employee;
         customer Customer;
     public:
+        bool checkCustomer(customer cus);
         void setCusEmp(customer Customer ,employee Employee);
         void endProcces();
         QString Status();

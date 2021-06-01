@@ -1,5 +1,7 @@
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
+#include <QApplication>
+#include <QMainWindow>
 #include <QtSql/QSqlDatabase>
 #include <QString>
 #include <QVariant>

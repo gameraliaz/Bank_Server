@@ -3,6 +3,7 @@
 #include <server.h>
 #include <QTime>
 #include <ctime>
+#include <QtDebug>
 employeeWin::employeeWin(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::employeeWin)
@@ -20,7 +21,9 @@ employeeWin::~employeeWin()
 }
 void employeeWin::setEmployee(employee Employee)
 {
-    employeeWin::Employee=Employee;
+    int id;
+    Employee.returnInfo(id);
+    employeeWin::Employee=Server::Bank.returnEmp(id);
     ui->lblEmployeeName->setText(Employee.Name());
     ui->lblLoginTime->setText(QTime::fromMSecsSinceStartOfDay(10 * 1000).toString("hh:mm:ss"));
 }
@@ -34,28 +37,32 @@ void employeeWin::on_cmbService_currentIndexChanged(int index)
 
 void employeeWin::on_btnGetjob_clicked()
 {
+    int id;
+    Employee.returnInfo(id);
     service=ui->cmbService->currentIndex();
-    if(!active)//
+    if(!active)
     {
-        Employee.stop_start_working();
-        timecare=time(NULL);
-        Server::Bank.Empgetjob(Employee,service);
+        timecare=time_t(NULL);
+        Server::Bank.Empgetjob(Server::Bank.returnEmp(id),service);
         active=true;
     }else
     {
-        Employee.worktime-=(time(NULL)-timecare);
-        Server::Bank.customerServiceCancel(service);
-        Server::Bank.Empgetjob(Employee,service);
+        Server::Bank.returnEmp(id).worktime-=timecare;
+        timecare=time_t(NULL);
+        Server::Bank.Empgetjob(Server::Bank.returnEmp(id),service);
     }
+    ui->lblQueue->setText(Server::Bank.Turn_Queue(service));
 }
 
 
 void employeeWin::on_btnEndjob_clicked()
 {
+
     if(active)
     {
-        Employee.Workcount++;
-        Employee.stop_start_working();
-        Server::Bank.Empendjob(Employee);
+        int id;
+        Employee.returnInfo(id);
+        Server::Bank.Empendjob(Server::Bank.returnEmp(id));
+        active=false;
     }
 }

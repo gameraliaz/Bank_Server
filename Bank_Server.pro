@@ -1,5 +1,4 @@
 QT       += core gui
-QT += network
 QT += sql
 QT += widgets
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -24,7 +23,9 @@ SOURCES += \
     Class/person.cpp \
     Class/procces.cpp \
     Class/timer.cpp \
+    Form/customerwin.cpp \
     Form/employeewin.cpp \
+    Form/receipt.cpp \
     Form/winadmin.cpp \
     Form/winloginemployee.cpp \
     db/dbmanager.cpp \
@@ -38,14 +39,18 @@ HEADERS += \
     Class/person.h \
     Class/procces.h \
     Class/timer.h \
+    Form/customerwin.h \
     Form/employeewin.h \
+    Form/receipt.h \
     Form/winadmin.h \
     Form/winloginemployee.h \
     db/dbmanager.h \
     server.h
 
 FORMS += \
+    Form/customerwin.ui \
     Form/employeewin.ui \
+    Form/receipt.ui \
     Form/winadmin.ui \
     Form/winloginemployee.ui \
     server.ui
@@ -56,7 +61,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    db/EmployeesDb.db
+    db/Database.db
 
 RESOURCES += \
     Resource.qrc

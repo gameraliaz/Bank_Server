@@ -2,10 +2,17 @@
 
 int* customer::Queue=new int[0];
 int customer::allQueue=0;
+customer::customer()
+{
+    empid=0;
+    waittime=0;
+}
 void customer::setCustomer(int service,int place)
 {
     customer::service=service;
     customer::place=place;
+    empid=0;
+    waittime=0;
 }
 void customer::returnInfo(int &Service,int &Place,QString &Firstname,QString &Lastname,QString &Birthdate,QString &Identitycode)
 {
@@ -15,6 +22,14 @@ void customer::returnInfo(int &Service,int &Place,QString &Firstname,QString &La
     Lastname=lastName;
     Birthdate=birthDate;
     Identitycode=identityCode;
+}
+int customer::returnPlace()
+{
+    return place;
+}
+int customer::returnService()
+{
+    return service;
 }
 bool customer::trueInfo(int Place,int Service)
 {
@@ -38,6 +53,8 @@ customer& customer::operator = (customer ob)
 {
     service=ob.service;
     place=ob.place;
+    waittime=ob.waittime;
+    empid=ob.empid;
     setPerson(ob.firstName,ob.lastName,ob.birthDate,ob.identityCode);
     return *this;
 }

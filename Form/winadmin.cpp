@@ -1,6 +1,7 @@
 #include "winadmin.h"
 #include "ui_winadmin.h"
 #include <Class/employee.h>
+#include <server.h>
 #include <QMessageBox>
 winAdmin::winAdmin(QWidget *parent) :
     QMainWindow(parent),
@@ -23,7 +24,6 @@ void winAdmin::on_btnCreateEmployee_clicked()
         if(ui->txtRepPassword->text()==ui->txtPassword->text())
         {
             Server::Bank.addEmployee(ui->txtPassword->text(),ui->txtFirstName->text(),ui->txtLastName->text(),ui->dpBirthDate->text(),ui->txtIdentity->text());
-            Server::DbEmployee.addEmployee(employee::Ids,ui->txtPassword->text(),ui->txtFirstName->text(),ui->txtLastName->text(),ui->dpBirthDate->text(),ui->txtIdentity->text());
         }
         else
         {

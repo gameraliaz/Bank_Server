@@ -1,5 +1,4 @@
 #include "timer.h"
-
 timer::timer()
 {
     timerob=time(NULL);
@@ -12,11 +11,11 @@ int timer::time_min()
 {
     return timerob/60;
 }
-int timer::time_sec()
+long timer::time_sec()
 {
     return timerob;
 }
 QString timer::Status()
 {
-    return QVariant(((timerob<60)?time_sec():time_min())).toString();
+    return QString::number(time_sec());
 }

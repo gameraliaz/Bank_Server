@@ -18,12 +18,13 @@ class banksys
         procces *Procces;
         int Procount;
         int *ProcountSer;
-        static int *Turn;
+        int *Turn;
         int *customersCanceledCount;
         int max_min_sum_avg[4];
         int **max_min_sum_avg_ser;
     public:
         banksys();
+        bool LoginEmloyeeCheck(int id,QString Password);
         void addEmployee(QString Password,QString Firstname,QString Lastname,QString Birthdate,QString Identitycode);
         void addCustommer(int Service);
         employee loginEmployee(int Id,QString Password);
@@ -36,6 +37,9 @@ class banksys
         QString *Services;
         int Sercount;
         void customerServiceCancel(int service);
+        int empIDProcces(int service,int place);
+        employee & returnEmp(int id);
+
 };
 
 #endif // BANKSYS_H

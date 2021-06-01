@@ -12,7 +12,7 @@ class timer
         timer();
         void end();
         int time_min();
-        int time_sec();
+        long time_sec();
         QString Status();
 };
 
