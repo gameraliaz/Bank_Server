@@ -29,7 +29,6 @@ private:
     bool active;
     int service;
     employee Employee;
-    int timecare;
 };
 
 #endif // EMPLOYEEWIN_H

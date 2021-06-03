@@ -1,12 +1,10 @@
 #include "employee.h"
-#include <ctime>
 int employee::Ids =1000;
 employee::employee()
 {
     worktime=0;
     Workcount=0;
     id=-1;
-    active=false;
 }
 void employee::SignUp(QString Password,QString Firstname,QString Lastname,QString Birthdate,QString Identitycode)
 {
@@ -73,7 +71,6 @@ employee& employee::operator = (employee ob)
     birthDate=ob.birthDate;
     identityCode=ob.identityCode;
     password=ob.password;
-    active=ob.active;
     timecare=ob.timecare;
     worktime=ob.worktime;
     Workcount=ob.Workcount;
@@ -85,18 +82,4 @@ QString employee::Status()
     result="ID : "+QVariant(id).toString()+"\t Work time: "+QVariant(worktime).toString()+"\t Work count: "+QVariant(Workcount).toString()+'\n'+person::Status()+'\n';
     return result;
 }
-void employee::stop_start_working()
-{
-    if(active)
-    {
-        //stop
-        worktime+=time(NULL)-timecare;
-        active=false;
-    }
-    else
-    {
-        //start
-        timecare=time(NULL);
-        active=true;
-    }
-}
+

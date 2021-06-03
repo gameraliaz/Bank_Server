@@ -178,53 +178,50 @@ void banksys::addService(QString Service)
 QString banksys::Status()
 {
     QString result="";
-    qDebug() <<"e";
-    result+="Employees count : "+(QVariant(Empcount).toString()) +'\t'+"Ids: "+(QVariant(employee::Ids).toString())+'\n';
+
+    result+="Employees count : "+(QVariant(Empcount).toString()) +'\n';
     for(int i=0;i<Empcount;i++)
     {
         result+=Employees[i].Status();
     }
-    qDebug() <<"w";
     result+="Customers count : "+(QVariant(Cuscount).toString())+'\n';
     for(int i=0;i<Cuscount;i++)
     {
         result+=Customers[i].Status();
     }
-    qDebug() <<"q";
     result+="Services count : "+(QVariant(Sercount).toString())+'\n';
-    for(int i=0;i<Sercount;i++)
-    {
-        result+=(QVariant(i).toString())+" : "+Services[i]+'\t';
-        result+="Queue : "+(QVariant(customer::Queue[i]).toString())+'\n';
-    }
-    qDebug() <<"a";
+    timer ***t;
+    t=new timer ** [Procount];
     result+="Procces count : "+(QVariant(Procount).toString())+'\n';
     for(int i=0;i<Procount;i++)
     {
-        result+=Procces[i].Status()+'\n';
+        result+="Procces "+QString::number(i+1)+'\n';
+        t[i]=new timer *[2];
+        for(int j=0;j<Cuscount;j++)
+        {
+            if(Procces[i].checkCustomer(Customers[j]))
+            {
+                t[i][0]=&Customers[j];
+                t[i][1]=&Procces[i];
+                result+="Customer place in queue : "+QString::number(Customers[i].returnPlace())+"\t";
+                result+="Customer service : "+Services[Customers[i].returnService()]+"\t";
+                result+="Employee id : "+QString::number(Customers[i].empid)+"\n";
+                result+="Wait time :\t"+t[i][0]->Status()+"\n";
+                result+="Procces time :\t"+t[i][1]->Status()+"\n";
+                if(Procces[i].canceled)
+                    result+="Procces was canceled!\n\n";
+                break;
+            }
+        }
     }
-    qDebug() <<"0";
-    result+="Customers served : \n";
+
     int countCusServed=0;
     for(int i=0;i<Sercount;i++)
     {
+        result+=Services[i]+" :"+'\n';
+        result+="Queue : "+(QVariant(customer::Queue[i]).toString())+'\n';
         countCusServed+=ProcountSer[i]-customersCanceledCount[i];
-        result+=Services[i]+" : \t"+(QVariant(ProcountSer[i]-customersCanceledCount[i])).toString()+'\n';
-    }
-    qDebug() <<"1";
-    result+="All customers served count : \t"+(QVariant(countCusServed)).toString()+'\n';
-
-    result+="Max response time : "+(QVariant(max_min_sum_avg[0]).toString())+'\n';
-
-    result+="Min response time : "+(QVariant(max_min_sum_avg[1]).toString())+'\n';
-
-    result+="Sum responses time : "+(QVariant(max_min_sum_avg[2]).toString())+'\n';
-
-    result+="Avrage response time : "+(QVariant(max_min_sum_avg[3]).toString())+'\n';
-    qDebug() <<"2";
-    for(int i=0;i<Sercount;i++)
-    {
-        result+=Services[i]+'\n';
+        result+="Customers served : "+(QVariant(ProcountSer[i]-customersCanceledCount[i])).toString()+'\n';
 
         result+="Max response time : "+(QVariant(max_min_sum_avg_ser[i][0]).toString())+'\n';
 
@@ -234,7 +231,15 @@ QString banksys::Status()
 
         result+="Avrage response time : "+(QVariant(max_min_sum_avg_ser[i][3]).toString())+'\n';
     }
-    qDebug() <<"3";
+    result+="All customers served count : \t"+(QVariant(countCusServed)).toString()+'\n';
+
+    result+="Max response time : "+(QVariant(max_min_sum_avg[0]).toString())+'\n';
+
+    result+="Min response time : "+(QVariant(max_min_sum_avg[1]).toString())+'\n';
+
+    result+="Sum responses time : "+(QVariant(max_min_sum_avg[2]).toString())+'\n';
+
+    result+="Avrage response time : "+(QVariant(max_min_sum_avg[3]).toString())+'\n';
     return result;
 }
 bool banksys::Empgetjob(employee Employee,int Service)
@@ -265,29 +270,48 @@ bool banksys::Empgetjob(employee Employee,int Service)
             Turn[Service]++;
             //seting max  , min , sum and avrage procces time
             Customers[i].end();
-            max_min_sum_avg[2]+=Customers[i].waittime;
-            max_min_sum_avg_ser[Service][2]+=Customers[i].waittime;
-            max_min_sum_avg[3]=max_min_sum_avg[2]/Procount;
-            max_min_sum_avg_ser[Service][3]=max_min_sum_avg_ser[Service][2]/ProcountSer[Service];
-            if(Customers[i].waittime>max_min_sum_avg[0])
-                max_min_sum_avg[0]=Customers[i].waittime;
-            else if(Customers[i].waittime<max_min_sum_avg[0])
-                max_min_sum_avg[1]=Customers[i].waittime;
-            else
+            /*
+            if(ProcountSer[Service]==1)
             {
-                max_min_sum_avg[1]=Customers[i].waittime;
-                max_min_sum_avg[0]=Customers[i].waittime;
-            }
-            if(Customers[i].waittime>max_min_sum_avg_ser[Service][0])
-                max_min_sum_avg_ser[Service][0]=Customers[i].waittime;
-            else if(Customers[i].waittime<max_min_sum_avg_ser[Service][0])
-                max_min_sum_avg_ser[Service][1]=Customers[i].waittime;
-            else
+                for(int k=0;k<4;k++)
+                {
+                    max_min_sum_avg_ser[Service][k]=Customers[k].waittime;
+                }
+                if(Procount==1)
+                {
+                    for(int k=0;k<4;k++)
+                    {
+                        max_min_sum_avg[k]=Customers[k].waittime;
+                    }
+                }
+            }else
             {
-                max_min_sum_avg_ser[Service][1]=Customers[i].waittime;
-                max_min_sum_avg_ser[Service][0]=Customers[i].waittime;
+                max_min_sum_avg[2]+=Customers[i].waittime;
+                max_min_sum_avg_ser[Service][2]+=Customers[i].waittime;
+                max_min_sum_avg[3]=max_min_sum_avg[2]/Procount;
+                max_min_sum_avg_ser[Service][3]=max_min_sum_avg_ser[Service][2]/ProcountSer[Service];
+                if(Customers[i].waittime>max_min_sum_avg[0])
+                    max_min_sum_avg[0]=Customers[i].waittime;
+                else if(Customers[i].waittime<max_min_sum_avg[0])
+                    max_min_sum_avg[1]=Customers[i].waittime;
+                else
+                {
+                    max_min_sum_avg[1]=Customers[i].waittime;
+                    max_min_sum_avg[0]=Customers[i].waittime;
+                }
+                if(Customers[i].waittime>max_min_sum_avg_ser[Service][0])
+                    max_min_sum_avg_ser[Service][0]=Customers[i].waittime;
+                else if(Customers[i].waittime<max_min_sum_avg_ser[Service][0])
+                    max_min_sum_avg_ser[Service][1]=Customers[i].waittime;
+                else
+                {
+                    max_min_sum_avg_ser[Service][1]=Customers[i].waittime;
+                    max_min_sum_avg_ser[Service][0]=Customers[i].waittime;
+                }
             }
-            returnEmp(empID).stop_start_working();
+             * */
+            setMinMaxAvg();
+            setEmployeeWorktime(empID);
             return true;
         }
     }
@@ -297,7 +321,6 @@ bool banksys::Empendjob(employee Emp)
 {
     int empID;
     Emp.returnInfo(empID);
-    returnEmp(empID).stop_start_working();
     returnEmp(empID).Workcount++;
     for(int i=0;i<Procount;i++)
     {
@@ -307,10 +330,12 @@ bool banksys::Empendjob(employee Emp)
             {
                 if(Procces[i].checkCustomer(Customers[j]))
                 {
-                    if(Customers[j].empid>0)
+                    if(Customers[j].active)
                     {
                         Procces[i].endProcces();
-                        Customers[j].empid=-1;
+                        Customers[j].active=false;
+                        setMinMaxAvg();
+                        setEmployeeWorktime(empID);
                         return true;
                     }
                 }
@@ -327,18 +352,20 @@ QString banksys::Turn_Queue (int queueNum)
 }
 void banksys::customerServiceCancel(int service)
 {
+    returnCus(Turn[service]-1,service).active=false;
     customersCanceledCount[service]++;
-}
-int banksys::empIDProcces(int service,int place)
-{
-    for(int i=0;i<Cuscount;i++)
+    for(int i=0;i<Procount;i++)
     {
-        if(Customers[i].trueInfo(place,service))
+        if(Procces[i].checkCustomer(returnCus(Turn[service]-1,service)))
         {
-            return Customers[i].empid;
+            Procces[i].canceled=true;
+            Procces[i].endProcces();
+            setEmployeeWorktime(Procces[i].returnempID());
+            break;
         }
     }
-    return -5;
+    setMinMaxAvg();
+
 }
 employee & banksys::returnEmp(int id)
 {
@@ -347,4 +374,85 @@ employee & banksys::returnEmp(int id)
         if(Employees[i].trueInfo(id))
             return Employees[i];
     }
+}
+customer & banksys::returnCus(int place,int service)
+{
+    for(int i=0;i<Cuscount;i++)
+    {
+        if(Customers[i].trueInfo(place,service))
+            return Customers[i];
+    }
+}
+void banksys::setMinMaxAvg()
+{
+    int count=0;
+    for(int l=0;l<Sercount;l++)
+    {
+        int countSer=0;
+        for(int i=0;i<Cuscount;i++)
+        {
+            if(Customers[i].returnService()==l)
+            {
+                if(!Customers[i].active)
+                {
+                    for(int j=0;j<Procount;j++)
+                    {
+                        if(Procces[j].checkCustomer(Customers[i]))
+                        {
+                            if(!Procces[j].canceled)
+                            {
+                                int wait=Customers[i].waittime;
+                                count++;
+                                countSer++;
+                                if(count==1)
+                                {
+                                    for(int k=0;k<4;k++)
+                                    {
+                                        max_min_sum_avg[k]=wait;
+                                    }
+                                }
+                                else
+                                {
+                                    max_min_sum_avg[2]+=wait;
+                                    max_min_sum_avg[3]=max_min_sum_avg[2]/count;
+                                    if(wait>max_min_sum_avg[0])
+                                        max_min_sum_avg[0]=wait;
+                                    else
+                                        max_min_sum_avg[1]=wait;
+                                }
+                                if(countSer==1)
+                                {
+                                    for(int k=0;k<4;k++)
+                                    {
+                                        max_min_sum_avg_ser[l][k]=wait;
+                                    }
+                                }else
+                                {
+                                    max_min_sum_avg_ser[l][2]+=wait;
+                                    max_min_sum_avg_ser[l][3]=max_min_sum_avg[2]/count;
+                                    if(wait>max_min_sum_avg_ser[l][0])
+                                        max_min_sum_avg_ser[l][0]=wait;
+                                    else
+                                        max_min_sum_avg_ser[l][1]=wait;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+void banksys::setEmployeeWorktime(int empID)
+{
+    int sum=0;
+    for(int i=0;i<Procount;i++)
+    {
+        if(!Procces[i].done())
+        {
+            sum+=Procces[i].proccesTime;
+        }
+    }
+    returnEmp(empID).worktime=sum;
 }

@@ -95,7 +95,7 @@
      </rect>
     </property>
     <property name="inputMask">
-     <string>0000</string>
+     <string/>
     </property>
     <property name="maxLength">
      <number>4</number>

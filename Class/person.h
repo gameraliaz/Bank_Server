@@ -10,6 +10,7 @@ class person
         QString birthDate;
         QString identityCode; //We define the type of string because we do not need to do mathematical calculations
         void setPerson(QString Firstname,QString Lastname,QString Birthdate,QString Identitycode);
+       public:
         QString Status();
 };
 

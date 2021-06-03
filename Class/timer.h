@@ -9,10 +9,12 @@ class timer
     private:
         time_t timerob;
     protected:
-        timer();
+
         void end();
         int time_min();
         long time_sec();
+    public:
+        timer();
         QString Status();
 };
 

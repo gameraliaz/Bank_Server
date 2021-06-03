@@ -2,14 +2,12 @@
 #define EMPLOYEES_H
 #include <QString>
 #include <QVariant>
-#include "Class/timer.h"
 #include "Class/person.h"
 class employee:public person
 {
     private:
         int id;
         QString password;
-        bool active;
         int timecare;
     public:
         int Workcount;
@@ -24,8 +22,7 @@ class employee:public person
         QString Name();
         void returnInfo(int &Id);
         employee& operator = (employee ob);
-        virtual QString Status();
-        void stop_start_working();
+        QString Status();
 };
 
 #endif // EMPLOYEES_H

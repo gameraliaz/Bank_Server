@@ -8,7 +8,7 @@
 
 
 
-class customer:public person,timer
+class customer:public person,public timer
 {
     private:
         int service;
@@ -29,6 +29,7 @@ class customer:public person,timer
         void end();
         int waittime;
         int empid;
+        bool active;
 };
 
 #endif // CUSTOMERS_H

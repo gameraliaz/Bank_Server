@@ -6,6 +6,7 @@ customer::customer()
 {
     empid=0;
     waittime=0;
+    active=true;
 }
 void customer::setCustomer(int service,int place)
 {
@@ -55,6 +56,7 @@ customer& customer::operator = (customer ob)
     place=ob.place;
     waittime=ob.waittime;
     empid=ob.empid;
+    active=ob.active;
     setPerson(ob.firstName,ob.lastName,ob.birthDate,ob.identityCode);
     return *this;
 }

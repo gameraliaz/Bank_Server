@@ -37,8 +37,10 @@ class banksys
         QString *Services;
         int Sercount;
         void customerServiceCancel(int service);
-        int empIDProcces(int service,int place);
         employee & returnEmp(int id);
+        customer & returnCus(int place,int service);
+        void setMinMaxAvg();
+        void setEmployeeWorktime(int empID);
 
 };
 

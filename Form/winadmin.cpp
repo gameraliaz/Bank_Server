@@ -24,6 +24,13 @@ void winAdmin::on_btnCreateEmployee_clicked()
         if(ui->txtRepPassword->text()==ui->txtPassword->text())
         {
             Server::Bank.addEmployee(ui->txtPassword->text(),ui->txtFirstName->text(),ui->txtLastName->text(),ui->dpBirthDate->text(),ui->txtIdentity->text());
+            ui->txtInfo->setText(Server::Bank.Status());
+            ui->txtID->setText((QVariant(employee::Ids+1).toString()));
+            ui->txtFirstName->setText("");
+            ui->txtLastName->setText("");
+            ui->txtIdentity->setText("");
+            ui->txtPassword->setText("");
+            ui->txtRepPassword->setText("");
         }
         else
         {
@@ -43,6 +50,8 @@ void winAdmin::on_btnCreateEmployee_clicked()
 void winAdmin::on_btnAddService_clicked()
 {
     Server::Bank.addService(ui->txtServiceName->text());
+    ui->txtServiceName->setText("");
+    ui->txtInfo->setText(Server::Bank.Status());
 }
 
 void winAdmin::on_btnShowBankInfo_clicked()

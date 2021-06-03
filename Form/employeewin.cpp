@@ -2,7 +2,6 @@
 #include "ui_employeewin.h"
 #include <server.h>
 #include <QTime>
-#include <ctime>
 #include <QtDebug>
 employeeWin::employeeWin(QWidget *parent) :
     QMainWindow(parent),
@@ -19,13 +18,14 @@ employeeWin::~employeeWin()
 {
     delete ui;
 }
+
 void employeeWin::setEmployee(employee Employee)
 {
     int id;
     Employee.returnInfo(id);
     employeeWin::Employee=Server::Bank.returnEmp(id);
     ui->lblEmployeeName->setText(Employee.Name());
-    ui->lblLoginTime->setText(QTime::fromMSecsSinceStartOfDay(10 * 1000).toString("hh:mm:ss"));
+    ui->lblLoginTime->setText(QTime::currentTime().toString("hh:mm:ss"));
 }
 
 void employeeWin::on_cmbService_currentIndexChanged(int index)
@@ -33,31 +33,36 @@ void employeeWin::on_cmbService_currentIndexChanged(int index)
     ui->lblQueue->setText(Server::Bank.Turn_Queue(index));
 }
 
-
-
 void employeeWin::on_btnGetjob_clicked()
 {
+
     int id;
     Employee.returnInfo(id);
-    service=ui->cmbService->currentIndex();
-    if(!active)
+    int Service=ui->cmbService->currentIndex();
+    if(Server::Bank.Turn_Queue(Service).split('/')[0]==Server::Bank.Turn_Queue(Service).split('/')[1])
     {
-        timecare=time_t(NULL);
-        Server::Bank.Empgetjob(Server::Bank.returnEmp(id),service);
+        if(active)
+        {
+            active=false;
+            Server::Bank.customerServiceCancel(service);
+        }
+    }
+    else if(!active)
+    {
+        Server::Bank.Empgetjob(Server::Bank.returnEmp(id),Service);
         active=true;
+        service=Service;
     }else
     {
-        Server::Bank.returnEmp(id).worktime-=timecare;
-        timecare=time_t(NULL);
-        Server::Bank.Empgetjob(Server::Bank.returnEmp(id),service);
+        Server::Bank.customerServiceCancel(service);
+        service=Service;
+        Server::Bank.Empgetjob(Server::Bank.returnEmp(id),Service);
     }
-    ui->lblQueue->setText(Server::Bank.Turn_Queue(service));
+    ui->lblQueue->setText(Server::Bank.Turn_Queue(Service));
 }
-
 
 void employeeWin::on_btnEndjob_clicked()
 {
-
     if(active)
     {
         int id;
