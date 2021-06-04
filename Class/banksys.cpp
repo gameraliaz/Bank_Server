@@ -72,107 +72,132 @@ customer banksys::loginCustomer(int Place,int Service)
 void banksys::addService(QString Service)
 {
     //add Service size
-    QString temp[Sercount];
-    for(int i=0;i<Sercount;i++)
+    if(Sercount!=0)
     {
-        temp[i]=Services[i];
-    }
-    delete [] Services;
-    Sercount++;
-    Services = new QString[Sercount];
-    for(int i=0;i<Sercount-1;i++)
-    {
-        Services[i]=temp[i];
-    }
-    //add new Service
-    Services[Sercount-1]=Service;
-    //add Queue size
-    int tempq[Sercount-1];
-    for(int i=0;i<Sercount-1;i++)
-    {
-        tempq[i]=customer::Queue[i];
-    }
-    delete [] customer::Queue;
-    customer::Queue=new int[Sercount];
-    for(int i=0;i<Sercount-1;i++)
-    {
-        customer::Queue[i]=tempq[i];
-    }
-    //Initialization new index of Queue
-    customer::Queue[Sercount-1]=0;
-    //add Turn size
-    int tempt[Sercount-1];
-    for(int i=0;i<Sercount-1;i++)
-    {
-        tempt[i]=Turn[i];
-    }
-    delete [] Turn;
-    Turn=new int[Sercount];
-    for(int i=0;i<Sercount-1;i++)
-    {
-        Turn[i]=tempt[i];
-    }
-    //Initialization new index of Turn
-    Turn[Sercount-1]=1;
-    //Add ProcountSer size
-    int tempps[Sercount-1];
-    for(int i=0;i<Sercount-1;i++)
-    {
-        tempps[i]=ProcountSer[i];
-    }
-    delete [] ProcountSer;
-    ProcountSer=new int[Sercount];
-    for(int i=0;i<Sercount-1;i++)
-    {
-        ProcountSer[i]=tempps[i];
-    }
-    //Initialization new index of ProcountSer
-    ProcountSer[Sercount-1]=0;
-    //Add customersCanceledCount size
-    int tempccc[Sercount-1];
-    for(int i=0;i<Sercount-1;i++)
-    {
-        tempccc[i]=customersCanceledCount[i];
-    }
-    delete [] customersCanceledCount;
-    customersCanceledCount=new int[Sercount];
-    for(int i=0;i<Sercount-1;i++)
-    {
-        customersCanceledCount[i]=tempccc[i];
-    }
-    //Initialization new index of ProcountSer
-    customersCanceledCount[Sercount-1]=0;
-    //Add max_min_sum_avg_ser size
-    int tempmmsa[Sercount-1][4];
-    for(int i=0;i<Sercount-1;i++)
-    {
-        for(int j=0;j<4;j++)
+        QString temp[Sercount];
+        for(int i=0;i<Sercount;i++)
         {
-            tempmmsa[i][j]=max_min_sum_avg_ser[i][j];
+           temp[i]=Services[i];
         }
-    }
-    for(int i=0;i<Sercount-1;i++)
-    {
-        delete [] max_min_sum_avg_ser[i];
-    }
-    delete [] max_min_sum_avg_ser;
-    max_min_sum_avg_ser=new int*[Sercount];
-    for(int i=0;i<Sercount;i++)
-    {
-        max_min_sum_avg_ser[i]=new int[4];
-    }
-    for(int i=0;i<Sercount-1;i++)
-    {
-        for(int j=0;j<4;j++)
+        delete [] Services;
+        Sercount++;
+        Services = new QString[Sercount];
+        for(int i=0;i<Sercount-1;i++)
         {
-            max_min_sum_avg_ser[i][j]=tempmmsa[i][j];
+            Services[i]=temp[i];
         }
-    }
+        //add new Service
+        Services[Sercount-1]=Service;
+        //add Queue size
+        int tempq[Sercount-1];
+        for(int i=0;i<Sercount-1;i++)
+        {
+            tempq[i]=customer::Queue[i];
+        }
+        delete [] customer::Queue;
+        customer::Queue=new int[Sercount];
+        for(int i=0;i<Sercount-1;i++)
+        {
+            customer::Queue[i]=tempq[i];
+        }
+        //Initialization new index of Queue
+        customer::Queue[Sercount-1]=0;
+        //add Turn size
+        int tempt[Sercount-1];
+        for(int i=0;i<Sercount-1;i++)
+        {
+            tempt[i]=Turn[i];
+        }
+        delete [] Turn;
+        Turn=new int[Sercount];
+        for(int i=0;i<Sercount-1;i++)
+        {
+            Turn[i]=tempt[i];
+        }
+        //Initialization new index of Turn
+        Turn[Sercount-1]=1;
+        //Add ProcountSer size
+        int tempps[Sercount-1];
+        for(int i=0;i<Sercount-1;i++)
+        {
+            tempps[i]=ProcountSer[i];
+        }
+        delete [] ProcountSer;
+        ProcountSer=new int[Sercount];
+        for(int i=0;i<Sercount-1;i++)
+        {
+            ProcountSer[i]=tempps[i];
+        }
+        //Initialization new index of ProcountSer
+        ProcountSer[Sercount-1]=0;
+        //Add customersCanceledCount size
+        int tempccc[Sercount-1];
+        for(int i=0;i<Sercount-1;i++)
+        {
+            tempccc[i]=customersCanceledCount[i];
+        }
+        delete [] customersCanceledCount;
+        customersCanceledCount=new int[Sercount];
+        for(int i=0;i<Sercount-1;i++)
+        {
+            customersCanceledCount[i]=tempccc[i];
+        }
+        //Initialization new index of ProcountSer
+        customersCanceledCount[Sercount-1]=0;
+        //Add max_min_sum_avg_ser size
+        int tempmmsa[Sercount-1][4];
+        for(int i=0;i<Sercount-1;i++)
+        {
+            for(int j=0;j<4;j++)
+            {
+                tempmmsa[i][j]=max_min_sum_avg_ser[i][j];
+            }
+        }
+        for(int i=0;i<Sercount-1;i++)
+        {
+            delete [] max_min_sum_avg_ser[i];
+        }
+        delete [] max_min_sum_avg_ser;
+        max_min_sum_avg_ser=new int*[Sercount];
+        for(int i=0;i<Sercount;i++)
+        {
+            max_min_sum_avg_ser[i]=new int[4];
+        }
+        for(int i=0;i<Sercount-1;i++)
+        {
+            for(int j=0;j<4;j++)
+            {
+                max_min_sum_avg_ser[i][j]=tempmmsa[i][j];
+            }
+        }
 
-    //Initialization new index of ProcountSer
-    for(int j=0;j<4;j++)
+        //Initialization new index of ProcountSer
+        for(int j=0;j<4;j++)
+        {
+            max_min_sum_avg_ser[Sercount-1][j]=0;
+        }
+    }else
     {
-        max_min_sum_avg_ser[Sercount-1][j]=0;
+        Sercount++;
+        Services = new QString[Sercount];
+        Services[Sercount-1]=Service;
+        customer::Queue=new int[Sercount];
+        customer::Queue[Sercount-1]=0;
+        Turn=new int[Sercount];
+        Turn[Sercount-1]=1;
+        ProcountSer=new int[Sercount];
+        ProcountSer[Sercount-1]=0;
+        customersCanceledCount=new int[Sercount];
+        customersCanceledCount[Sercount-1]=0;
+        max_min_sum_avg_ser=new int*[Sercount];
+        for(int i=0;i<Sercount;i++)
+        {
+            max_min_sum_avg_ser[i]=new int[4];
+        }
+        for(int j=0;j<4;j++)
+        {
+            max_min_sum_avg_ser[Sercount-1][j]=0;
+        }
     }
 }
 QString banksys::Status()

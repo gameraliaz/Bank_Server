@@ -17,11 +17,14 @@ class winLoginEmployee : public QMainWindow
 public:
     explicit winLoginEmployee(QWidget *parent = nullptr);
     ~winLoginEmployee();
+    void setBank(banksys &bankSys);
 
 private slots:
     void on_btnLogin_clicked();
 
+
 private:
+    banksys *bank;
     employeeWin *Winemp;
     Ui::winLoginEmployee *ui;
 };

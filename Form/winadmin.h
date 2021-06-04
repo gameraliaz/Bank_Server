@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QVariant>
+#include <Class/banksys.h>
 namespace Ui {
 class winAdmin;
 }
@@ -14,7 +15,7 @@ class winAdmin : public QMainWindow
 public:
     explicit winAdmin(QWidget *parent = nullptr);
     ~winAdmin();
-
+    void setBank(banksys &bankSys);
 private slots:
     void on_btnCreateEmployee_clicked();
 
@@ -24,6 +25,7 @@ private slots:
 
 private:
     Ui::winAdmin *ui;
+    banksys *bank;
 };
 
 #endif // WINADMIN_H

@@ -19,7 +19,6 @@ class Server : public QMainWindow
 public:
     Server(QWidget *parent = nullptr);
     ~Server();
-    static banksys Bank;
 private slots:
 
     void on_btnAdmin_clicked();
@@ -29,6 +28,7 @@ private slots:
     void on_btnCustomer_clicked();
 
 private:
+    banksys Bank;
     Ui::Server *ui;
     winAdmin *Winadmin;
     winLoginEmployee *Winlogin;

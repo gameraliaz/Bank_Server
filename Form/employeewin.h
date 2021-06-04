@@ -16,7 +16,7 @@ public:
     explicit employeeWin(QWidget *parent = nullptr);
     ~employeeWin();
     void setEmployee(employee Employee);
-
+    void setBank(banksys &bankSys);
 private slots:
     void on_cmbService_currentIndexChanged(int index);
 
@@ -25,6 +25,7 @@ private slots:
     void on_btnEndjob_clicked();
 
 private:
+    banksys *bank;
     Ui::employeeWin *ui;
     bool active;
     int service;

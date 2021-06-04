@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <Form/receipt.h>
+#include <Class/banksys.h>
 namespace Ui {
 class CustomerWin;
 }
@@ -14,11 +15,13 @@ class CustomerWin : public QMainWindow
 public:
     explicit CustomerWin(QWidget *parent = nullptr);
     ~CustomerWin();
+    void setBank(banksys &bankSys);
 
 private slots:
     void on_btnGet_clicked();
 
 private:
+    banksys *bank;
     Receipt *WinReceipt;
     Ui::CustomerWin *ui;
 };

@@ -1,15 +1,13 @@
 #include "winadmin.h"
 #include "ui_winadmin.h"
 #include <Class/employee.h>
-#include <server.h>
 #include <QMessageBox>
+#include <QDebug>
 winAdmin::winAdmin(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::winAdmin)
 {
     ui->setupUi(this);
-    ui->txtID->setText((QVariant(employee::Ids+1).toString()));
-    ui->txtInfo->setText(Server::Bank.Status());
 }
 
 winAdmin::~winAdmin()
@@ -23,8 +21,8 @@ void winAdmin::on_btnCreateEmployee_clicked()
     {
         if(ui->txtRepPassword->text()==ui->txtPassword->text())
         {
-            Server::Bank.addEmployee(ui->txtPassword->text(),ui->txtFirstName->text(),ui->txtLastName->text(),ui->dpBirthDate->text(),ui->txtIdentity->text());
-            ui->txtInfo->setText(Server::Bank.Status());
+            bank->addEmployee(ui->txtPassword->text(),ui->txtFirstName->text(),ui->txtLastName->text(),ui->dpBirthDate->text(),ui->txtIdentity->text());
+            ui->txtInfo->setText(bank->Status());
             ui->txtID->setText((QVariant(employee::Ids+1).toString()));
             ui->txtFirstName->setText("");
             ui->txtLastName->setText("");
@@ -49,12 +47,18 @@ void winAdmin::on_btnCreateEmployee_clicked()
 
 void winAdmin::on_btnAddService_clicked()
 {
-    Server::Bank.addService(ui->txtServiceName->text());
+    bank->addService(ui->txtServiceName->text());
     ui->txtServiceName->setText("");
-    ui->txtInfo->setText(Server::Bank.Status());
+    ui->txtInfo->setText(bank->Status());
 }
 
 void winAdmin::on_btnShowBankInfo_clicked()
 {
-    ui->txtInfo->setText(Server::Bank.Status());
+    ui->txtInfo->setText(bank->Status());
+}
+void winAdmin::setBank(banksys &bankSys)
+{
+    bank=&bankSys;
+    ui->txtID->setText((QVariant(employee::Ids+1).toString()));
+    ui->txtInfo->setText(bank->Status());
 }
