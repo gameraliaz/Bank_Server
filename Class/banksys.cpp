@@ -295,46 +295,6 @@ bool banksys::Empgetjob(employee Employee,int Service)
             Turn[Service]++;
             //seting max  , min , sum and avrage procces time
             Customers[i].end();
-            /*
-            if(ProcountSer[Service]==1)
-            {
-                for(int k=0;k<4;k++)
-                {
-                    max_min_sum_avg_ser[Service][k]=Customers[k].waittime;
-                }
-                if(Procount==1)
-                {
-                    for(int k=0;k<4;k++)
-                    {
-                        max_min_sum_avg[k]=Customers[k].waittime;
-                    }
-                }
-            }else
-            {
-                max_min_sum_avg[2]+=Customers[i].waittime;
-                max_min_sum_avg_ser[Service][2]+=Customers[i].waittime;
-                max_min_sum_avg[3]=max_min_sum_avg[2]/Procount;
-                max_min_sum_avg_ser[Service][3]=max_min_sum_avg_ser[Service][2]/ProcountSer[Service];
-                if(Customers[i].waittime>max_min_sum_avg[0])
-                    max_min_sum_avg[0]=Customers[i].waittime;
-                else if(Customers[i].waittime<max_min_sum_avg[0])
-                    max_min_sum_avg[1]=Customers[i].waittime;
-                else
-                {
-                    max_min_sum_avg[1]=Customers[i].waittime;
-                    max_min_sum_avg[0]=Customers[i].waittime;
-                }
-                if(Customers[i].waittime>max_min_sum_avg_ser[Service][0])
-                    max_min_sum_avg_ser[Service][0]=Customers[i].waittime;
-                else if(Customers[i].waittime<max_min_sum_avg_ser[Service][0])
-                    max_min_sum_avg_ser[Service][1]=Customers[i].waittime;
-                else
-                {
-                    max_min_sum_avg_ser[Service][1]=Customers[i].waittime;
-                    max_min_sum_avg_ser[Service][0]=Customers[i].waittime;
-                }
-            }
-             * */
             setMinMaxAvg();
             setEmployeeWorktime(empID);
             return true;
@@ -474,9 +434,10 @@ void banksys::setEmployeeWorktime(int empID)
     int sum=0;
     for(int i=0;i<Procount;i++)
     {
-        if(!Procces[i].done())
+        if(Procces[i].done())
         {
-            sum+=Procces[i].proccesTime;
+            if(Procces[i].checkEmployee(returnEmp(empID)))
+                sum+=Procces[i].proccesTime;
         }
     }
     returnEmp(empID).worktime=sum;
