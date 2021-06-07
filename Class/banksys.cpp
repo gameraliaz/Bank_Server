@@ -171,7 +171,7 @@ void banksys::addService(QString Service)
             }
         }
 
-        //Initialization new index of ProcountSer
+        //Initialization new index of max_min_sum_avg_ser
         for(int j=0;j<4;j++)
         {
             max_min_sum_avg_ser[Sercount-1][j]=0;
@@ -307,12 +307,16 @@ bool banksys::Empendjob(employee Emp)
     int empID;
     Emp.returnInfo(empID);
     returnEmp(empID).Workcount++;
+    qDebug()<<empID;
     for(int i=0;i<Procount;i++)
     {
-        if(Procces[i].checkEmployee(Emp))
+        qDebug()<<"procc : "<<Procces[i].returnempID();
+        if(Procces[i].returnempID()==empID)
         {
             for(int j=0;j<Cuscount;j++)
             {
+                qDebug()<<"customer : "<<Procces[i].checkCustomer(Customers[j]);
+                qDebug()<<"active : "<<Customers[j].active;
                 if(Procces[i].checkCustomer(Customers[j]))
                 {
                     if(Customers[j].active)
@@ -335,13 +339,14 @@ QString banksys::Turn_Queue (int queueNum)
 {
     return (QVariant(Turn[queueNum]-1).toString())+"/"+(QVariant(customer::Queue[queueNum]).toString());
 }
-void banksys::customerServiceCancel(int service)
+void banksys::customerServiceCancel(int place,int service)
 {
-    returnCus(Turn[service]-1,service).active=false;
+    qDebug()<<"place : "<<place;
+    returnCus(place,service).active=false;
     customersCanceledCount[service]++;
     for(int i=0;i<Procount;i++)
     {
-        if(Procces[i].checkCustomer(returnCus(Turn[service]-1,service)))
+        if(Procces[i].checkCustomer(returnCus(place,service)))
         {
             Procces[i].canceled=true;
             Procces[i].endProcces();
@@ -436,9 +441,13 @@ void banksys::setEmployeeWorktime(int empID)
     {
         if(Procces[i].done())
         {
-            if(Procces[i].checkEmployee(returnEmp(empID)))
+            if(Procces[i].returnempID()==empID)
                 sum+=Procces[i].proccesTime;
         }
     }
     returnEmp(empID).worktime=sum;
+}
+int banksys::turnPlace(int service)
+{
+    return Turn[service];
 }

@@ -36,11 +36,12 @@ class banksys
         QString Turn_Queue (int queueNum);
         QString *Services;
         int Sercount;
-        void customerServiceCancel(int service);
+        void customerServiceCancel(int place,int service);
         employee & returnEmp(int id);
         customer & returnCus(int place,int service);
         void setMinMaxAvg();
         void setEmployeeWorktime(int empID);
+        int turnPlace(int service);
 
 };
 

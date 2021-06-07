@@ -30,6 +30,7 @@ private:
     bool active;
     int service;
     employee Employee;
+    int place;
 };
 
 #endif // EMPLOYEEWIN_H

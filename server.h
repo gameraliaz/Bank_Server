@@ -3,7 +3,6 @@
 
 #include <QApplication>
 #include <QMainWindow>
-#include <QVariant>
 #include <Class/banksys.h>
 #include <Form/winloginemployee.h>
 #include <Form/winadmin.h>

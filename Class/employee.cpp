@@ -71,7 +71,6 @@ employee& employee::operator = (employee ob)
     birthDate=ob.birthDate;
     identityCode=ob.identityCode;
     password=ob.password;
-    timecare=ob.timecare;
     worktime=ob.worktime;
     Workcount=ob.Workcount;
     return *this;

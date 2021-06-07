@@ -3,7 +3,6 @@
 #include <iostream>
 #include <QString>
 #include <ctime>
-#include <QVariant>
 class timer
 {
     private:

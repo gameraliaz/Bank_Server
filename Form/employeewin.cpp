@@ -34,23 +34,25 @@ void employeeWin::on_btnGetjob_clicked()
     int id;
     Employee.returnInfo(id);
     int Service=ui->cmbService->currentIndex();
-    if(bank->Turn_Queue(Service).split('/')[0]==bank->Turn_Queue(Service).split('/')[1])
+    if(bank->turnPlace(Service)-1==customer::Queue[Service])
     {
         if(active)
         {
             active=false;
-            bank->customerServiceCancel(service);
+            bank->customerServiceCancel(place,service);
         }
     }
     else if(!active)
     {
+        place=bank->turnPlace(Service);
         bank->Empgetjob(bank->returnEmp(id),Service);
         active=true;
         service=Service;
     }else
     {
-        bank->customerServiceCancel(service);
+        bank->customerServiceCancel(place,service);
         service=Service;
+        place=bank->turnPlace(Service);
         bank->Empgetjob(bank->returnEmp(id),Service);
     }
     ui->lblQueue->setText(bank->Turn_Queue(Service));

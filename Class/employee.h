@@ -8,7 +8,6 @@ class employee:public person
     private:
         int id;
         QString password;
-        int timecare;
     public:
         int Workcount;
         int worktime;

@@ -9,12 +9,6 @@ void procces::setCusEmp(customer Customer ,employee Employee)
     active=true;
     canceled=false;
 }
-bool procces::checkEmployee(employee emp)
-{
-    int id;
-    emp.returnInfo(id);
-    return emp.trueInfo(id);
-}
 void procces::endProcces()
 {
     active=false;
